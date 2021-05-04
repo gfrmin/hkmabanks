@@ -22,9 +22,9 @@ jobs:
         pip install -r requirements.txt
     - name: Fetch latest data
       run: |-
-        curl "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=0" | jq -c .result.records[] > banks.jl
-        curl "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=100" | jq -c .result.records[] >> banks.jl
-        curl "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=200" | jq -c .result.records[] >> banks.jl
+        curl --insecure "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=0" | jq -c .result.records[] > banks.jl
+        curl --insecure "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=100" | jq -c .result.records[] >> banks.jl
+        curl --insecure "https://api.hkma.gov.hk/public/bank-svf-info/register-ais-lros?lang=en&offset=200" | jq -c .result.records[] >> banks.jl
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
